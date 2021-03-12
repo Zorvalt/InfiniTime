@@ -15,6 +15,7 @@
 #undef max
 #undef min
 #include "components/ble/BleController.h"
+#include "components/ble/CalendarManager.h"
 #include "components/ble/NotificationManager.h"
 #include "components/datetime/DateTimeController.h"
 #include "components/fs/FS.h"
@@ -27,6 +28,7 @@ NimbleController::NimbleController(Pinetime::System::SystemTask& systemTask,
                                    DateTime& dateTimeController,
                                    NotificationManager& notificationManager,
                                    Battery& batteryController,
+                                   CalendarManager& calendarManager,
                                    Pinetime::Drivers::SpiNorFlash& spiNorFlash,
                                    HeartRateController& heartRateController,
                                    MotionController& motionController,
@@ -42,6 +44,7 @@ NimbleController::NimbleController(Pinetime::System::SystemTask& systemTask,
     currentTimeClient {dateTimeController},
     anService {systemTask, notificationManager},
     alertNotificationClient {systemTask, notificationManager},
+    calendarService{systemTask, calendarManager},
     currentTimeService {dateTimeController},
     musicService {systemTask},
     weatherService {systemTask, dateTimeController},
@@ -99,6 +102,7 @@ void NimbleController::Init() {
   heartRateService.Init();
   motionService.Init();
   fsService.Init();
+  calendarService.Init();
 
   int rc;
   rc = ble_hs_util_ensure_addr(0);

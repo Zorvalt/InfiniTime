@@ -8,6 +8,7 @@
 #include "displayapp/Apps.h"
 #include "displayapp/LittleVgl.h"
 #include "displayapp/TouchEvents.h"
+#include "components/ble/CalendarManager.h"
 #include "components/brightness/BrightnessController.h"
 #include "components/motor/MotorController.h"
 #include "components/firmwarevalidator/FirmwareValidator.h"
@@ -62,7 +63,8 @@ namespace Pinetime {
                  Pinetime::Controllers::TimerController& timerController,
                  Pinetime::Controllers::AlarmController& alarmController,
                  Pinetime::Controllers::BrightnessController& brightnessController,
-                 Pinetime::Controllers::TouchHandler& touchHandler);
+                 Pinetime::Controllers::TouchHandler& touchHandler,
+                 Pinetime::Controllers::CalendarManager& calendarManager);
       void Start(System::BootErrors error);
       void PushMessage(Display::Messages msg);
 
@@ -90,6 +92,7 @@ namespace Pinetime {
       Pinetime::Controllers::AlarmController& alarmController;
       Pinetime::Controllers::BrightnessController &brightnessController;
       Pinetime::Controllers::TouchHandler& touchHandler;
+      Pinetime::Controllers::CalendarManager& calendarManager;
 
       Pinetime::Controllers::FirmwareValidator validator;
 

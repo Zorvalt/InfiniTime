@@ -10,6 +10,7 @@
 #include "components/ble/AlertNotificationClient.h"
 #include "components/ble/AlertNotificationService.h"
 #include "components/ble/BatteryInformationService.h"
+#include "components/ble/CalendarService.h"
 #include "components/ble/CurrentTimeClient.h"
 #include "components/ble/CurrentTimeService.h"
 #include "components/ble/DeviceInformationService.h"
@@ -49,6 +50,7 @@ namespace Pinetime {
                        Pinetime::Drivers::SpiNorFlash& spiNorFlash,
                        HeartRateController& heartRateController,
                        MotionController& motionController,
+                       CalendarManager& calendarManager,
                        FS& fs);
       void Init();
       void StartAdvertising();
@@ -95,6 +97,7 @@ namespace Pinetime {
       CurrentTimeClient currentTimeClient;
       AlertNotificationService anService;
       AlertNotificationClient alertNotificationClient;
+      CalendarService calendarService;
       CurrentTimeService currentTimeService;
       MusicService musicService;
       WeatherService weatherService;
