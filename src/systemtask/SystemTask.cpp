@@ -48,7 +48,7 @@ SystemTask::SystemTask(Drivers::SpiMaster &spi, Drivers::St7789 &lcd,
                        bleController{bleController}, dateTimeController{dateTimeController},
                        watchdog{}, watchdogView{watchdog},
                        motorController{motorController}, heartRateSensor{heartRateSensor},
-                       nimbleController(*this, bleController,dateTimeController, notificationManager, batteryController, spiNorFlash, heartRateController) {
+                       nimbleController(*this, bleController,dateTimeController, notificationManager, batteryController, spiNorFlash, heartRateController, calendarManager) {
   systemTasksMsgQueue = xQueueCreate(10, 1);
 }
 
@@ -84,7 +84,7 @@ void SystemTask::Work() {
 
   displayApp.reset(new Pinetime::Applications::DisplayApp(lcd, lvgl, touchPanel, batteryController, bleController,
                                                           dateTimeController, watchdogView, *this, notificationManager,
-                                                          heartRateController));
+                                                          heartRateController, calendarManager));
   displayApp->Start();
 
   batteryController.Update();

@@ -19,6 +19,7 @@
 #include "NavigationService.h"
 #include "ServiceDiscovery.h"
 #include "HeartRateService.h"
+#include "CalendarService.h"
 
 namespace Pinetime {
   namespace Drivers {
@@ -40,7 +41,7 @@ namespace Pinetime {
         NimbleController(Pinetime::System::SystemTask& systemTask, Pinetime::Controllers::Ble& bleController,
                 DateTime& dateTimeController, Pinetime::Controllers::NotificationManager& notificationManager,
                 Controllers::Battery& batteryController, Pinetime::Drivers::SpiNorFlash& spiNorFlash,
-                Controllers::HeartRateController& heartRateController);
+                Controllers::HeartRateController& heartRateController, Pinetime::Controllers::CalendarManager& calendarManager);
         void Init();
         void StartAdvertising();
         int OnGAPEvent(ble_gap_event *event);
@@ -81,6 +82,7 @@ namespace Pinetime {
         BatteryInformationService batteryInformationService;
         ImmediateAlertService immediateAlertService;
         HeartRateService heartRateService;
+        CalendarService calendarService;
 
         uint8_t addrType; // 1 = Random, 0 = PUBLIC
         uint16_t connectionHandle = 0;

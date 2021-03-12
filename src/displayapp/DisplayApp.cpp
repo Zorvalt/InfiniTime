@@ -19,6 +19,7 @@
 #include "displayapp/screens/SystemInfo.h"
 #include "displayapp/screens/Tile.h"
 #include "displayapp/screens/Twos.h"
+#include "displayapp/screens/Timeline.h"
 #include "drivers/Cst816s.h"
 #include "drivers/St7789.h"
 #include "drivers/Watchdog.h"
@@ -31,7 +32,8 @@ DisplayApp::DisplayApp(Drivers::St7789 &lcd, Components::LittleVgl &lvgl, Driver
                        Controllers::DateTime &dateTimeController, Drivers::WatchdogView &watchdog,
                        System::SystemTask &systemTask,
                        Pinetime::Controllers::NotificationManager& notificationManager,
-                       Pinetime::Controllers::HeartRateController& heartRateController) :
+                       Pinetime::Controllers::HeartRateController& heartRateController,
+                       Pinetime::Controllers::CalendarManager& calendarManager) :
         lcd{lcd},
         lvgl{lvgl},
         batteryController{batteryController},
@@ -42,7 +44,8 @@ DisplayApp::DisplayApp(Drivers::St7789 &lcd, Components::LittleVgl &lvgl, Driver
         currentScreen{new Screens::Clock(this, dateTimeController, batteryController, bleController, notificationManager, heartRateController) },
         systemTask{systemTask},
         notificationManager{notificationManager},
-        heartRateController{heartRateController} {
+        heartRateController{heartRateController},
+        calendarManager(calendarManager) {
   msgQueue = xQueueCreate(queueSize, itemSize);
   onClockApp = true;
 }
@@ -210,6 +213,7 @@ void DisplayApp::RunningState() {
       case Apps::FirmwareValidation: currentScreen.reset(new Screens::FirmwareValidation(this, validator)); break;
       case Apps::Notifications: currentScreen.reset(new Screens::Notifications(this, notificationManager, systemTask.nimble().alertService(), Screens::Notifications::Modes::Normal)); break;
       case Apps::HeartRate: currentScreen.reset(new Screens::HeartRate(this, heartRateController)); break;
+      case Apps::Timeline: currentScreen.reset(new Screens::Timeline(this, calendarManager)); break;
     }
     nextApp = Apps::None;
   }

@@ -14,6 +14,7 @@
 #include "components/ble/NotificationManager.h"
 #include "components/datetime/DateTimeController.h"
 #include "systemtask/SystemTask.h"
+#include "CalendarManager.h"
 
 using namespace Pinetime::Controllers;
 
@@ -23,7 +24,8 @@ NimbleController::NimbleController(Pinetime::System::SystemTask& systemTask,
         Pinetime::Controllers::NotificationManager& notificationManager,
         Controllers::Battery& batteryController,
         Pinetime::Drivers::SpiNorFlash& spiNorFlash,
-        Controllers::HeartRateController& heartRateController) :
+        Controllers::HeartRateController& heartRateController,
+        Pinetime::Controllers::CalendarManager& calendarManager) :
         systemTask{systemTask},
         bleController{bleController},
         dateTimeController{dateTimeController},
@@ -39,7 +41,8 @@ NimbleController::NimbleController(Pinetime::System::SystemTask& systemTask,
         batteryInformationService{batteryController},
         immediateAlertService{systemTask, notificationManager},
         heartRateService{systemTask, heartRateController},
-        serviceDiscovery({&currentTimeClient, &alertNotificationClient}) {
+        calendarService{systemTask, calendarManager},
+        serviceDiscovery({&currentTimeClient, &alertNotificationClient}){
 }
 
 int GAPEventCallback(struct ble_gap_event *event, void *arg) {
@@ -63,6 +66,7 @@ void NimbleController::Init() {
   batteryInformationService.Init();
   immediateAlertService.Init();
   heartRateService.Init();
+  calendarService.Init();
   int res;
   res = ble_hs_util_ensure_addr(0);
   ASSERT(res == 0);

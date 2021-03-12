@@ -4,6 +4,7 @@
 #include <queue.h>
 #include <task.h>
 #include <memory>
+#include <components/ble/CalendarManager.h>
 #include "Apps.h"
 #include "LittleVgl.h"
 #include "TouchEvents.h"
@@ -44,7 +45,8 @@ namespace Pinetime {
                    Controllers::DateTime &dateTimeController, Drivers::WatchdogView &watchdog,
                    System::SystemTask &systemTask,
                    Pinetime::Controllers::NotificationManager& notificationManager,
-                   Pinetime::Controllers::HeartRateController& heartRateController);
+                   Pinetime::Controllers::HeartRateController& heartRateController,
+                   Pinetime::Controllers::CalendarManager& calendarManager);
         void Start();
         void PushMessage(Messages msg);
 
@@ -89,6 +91,7 @@ namespace Pinetime {
         Pinetime::Controllers::FirmwareValidator validator;
         TouchModes touchMode = TouchModes::Gestures;
         Pinetime::Controllers::HeartRateController& heartRateController;
+        Pinetime::Controllers::CalendarManager& calendarManager;
     };
   }
 }

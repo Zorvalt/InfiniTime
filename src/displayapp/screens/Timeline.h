@@ -1,0 +1,27 @@
+#pragma once
+
+#include <lvgl/src/lv_core/lv_obj.h>
+#include <components/ble/CalendarManager.h>
+
+#include "Screen.h"
+
+namespace Pinetime {
+  namespace Applications {
+    namespace Screens {
+      class Timeline : public Screen {
+      public:
+        explicit Timeline(DisplayApp* app, Pinetime::Controllers::CalendarManager& calendarManager);
+        ~Timeline() override;
+        bool Refresh() override;
+        bool OnButtonPushed() override;
+        bool OnTouchEvent(TouchEvents event) override;
+        bool OnTouchEvent(uint16_t x, uint16_t y) override;
+
+      private:
+        Pinetime::Controllers::CalendarManager& calendarManager;
+        bool running = true;
+        lv_obj_t * hello_world_label;
+      };
+    }
+  }
+}
