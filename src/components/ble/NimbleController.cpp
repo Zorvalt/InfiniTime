@@ -14,7 +14,7 @@
 #include "components/ble/NotificationManager.h"
 #include "components/datetime/DateTimeController.h"
 #include "systemtask/SystemTask.h"
-#include "CalendarManager.h"
+#include "components/calendar/CalendarManager.h"
 
 using namespace Pinetime::Controllers;
 

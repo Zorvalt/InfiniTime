@@ -4,11 +4,11 @@
 #include <queue.h>
 #include <task.h>
 #include <memory>
-#include <components/ble/CalendarManager.h>
 #include "Apps.h"
 #include "LittleVgl.h"
 #include "TouchEvents.h"
 #include "components/brightness/BrightnessController.h"
+#include "components/calendar/CalendarManager.h"
 #include "components/firmwarevalidator/FirmwareValidator.h"
 #include "displayapp/screens/Screen.h"
 

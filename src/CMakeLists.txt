@@ -528,7 +528,7 @@ list(APPEND SOURCE_FILES
         components/ble/ServiceDiscovery.cpp
         components/ble/HeartRateService.cpp
         components/ble/CalendarService.cpp
-        components/ble/CalendarManager.cpp
+        components/calendar/CalendarManager.cpp
         components/firmwarevalidator/FirmwareValidator.cpp
         components/motor/MotorController.cpp
         drivers/Cst816s.cpp
@@ -620,7 +620,7 @@ set(INCLUDE_FILES
         components/ble/ServiceDiscovery.h
         components/ble/BleClient.h
         components/ble/HeartRateService.h.h
-        components/ble/CalendarManager.h
+        components/calendar/CalendarManager.h
         components/ble/CalendarService.h
         drivers/Cst816s.h
         FreeRTOS/portmacro.h
