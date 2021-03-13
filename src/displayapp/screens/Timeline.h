@@ -23,7 +23,8 @@ namespace Pinetime {
         Controllers::CalendarManager& calendarManager;
         Controllers::CalendarManager::CalendarIterator currentEvent;
         bool running = true;
-        lv_obj_t * hello_world_label;
+        lv_obj_t * title_label;
+        lv_obj_t * time_label;
       };
     }
   }
