@@ -213,7 +213,7 @@ void DisplayApp::RunningState() {
       case Apps::FirmwareValidation: currentScreen.reset(new Screens::FirmwareValidation(this, validator)); break;
       case Apps::Notifications: currentScreen.reset(new Screens::Notifications(this, notificationManager, systemTask.nimble().alertService(), Screens::Notifications::Modes::Normal)); break;
       case Apps::HeartRate: currentScreen.reset(new Screens::HeartRate(this, heartRateController)); break;
-      case Apps::Timeline: currentScreen.reset(new Screens::Timeline(this, calendarManager)); break;
+      case Apps::Timeline: currentScreen.reset(new Screens::Timeline(this, dateTimeController, calendarManager)); break;
     }
     nextApp = Apps::None;
   }
