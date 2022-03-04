@@ -17,7 +17,6 @@ namespace Pinetime {
       public:
         explicit Timeline(DisplayApp* app, Controllers::DateTime& dateTimeController, Pinetime::Controllers::CalendarManager& calendarManager);
         ~Timeline() override;
-        bool Refresh() override;
         bool OnButtonPushed() override;
         bool OnTouchEvent(TouchEvents event) override;
         bool OnTouchEvent(uint16_t x, uint16_t y) override;
@@ -38,7 +37,8 @@ namespace Pinetime {
         lv_obj_t * days_label;
         lv_obj_t * hours_label;
         lv_obj_t * week_canvas;
-        uint8_t cbuf[LV_CANVAS_BUF_SIZE_INDEXED_1BIT(CANVAS_WIDTH, CANVAS_HEIGHT)]{};
+
+        uint8_t cbuf[LV_IMG_BUF_SIZE_INDEXED_1BIT(CANVAS_WIDTH, CANVAS_HEIGHT)]{};
       };
     }
   }

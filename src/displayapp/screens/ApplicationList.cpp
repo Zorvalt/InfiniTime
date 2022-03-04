@@ -66,12 +66,12 @@ std::unique_ptr<Screen> ApplicationList::CreateScreen2() {
 
 std::unique_ptr<Screen> ApplicationList::CreateScreen3() {
   std::array<Screens::Tile::Applications, 6> applications {
-          {{"A", Apps::Timeline},
-           {"B", Apps::Navigation},
+          {{"T", Apps::Timeline},
+           {"W", Apps::Weather},
+           {"N", Apps::Navigation},
            {"C", Apps::Clock},
-           {"D", Apps::Music},
-           {"E", Apps::SysInfo},
-           {"F", Apps::Brightness}
+           {"M", Apps::Music},
+           {"S", Apps::SysInfo}
           }
   };
 

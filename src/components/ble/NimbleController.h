@@ -47,10 +47,10 @@ namespace Pinetime {
                        DateTime& dateTimeController,
                        NotificationManager& notificationManager,
                        Battery& batteryController,
+                       CalendarManager& calendarManager,
                        Pinetime::Drivers::SpiNorFlash& spiNorFlash,
                        HeartRateController& heartRateController,
                        MotionController& motionController,
-                       CalendarManager& calendarManager,
                        FS& fs);
       void Init();
       void StartAdvertising();

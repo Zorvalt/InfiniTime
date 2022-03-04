@@ -16,7 +16,7 @@ void formatDateTime(char* buffer, time_t timestamp) {
 
 Timeline::Timeline(DisplayApp* app, Controllers::DateTime& dateTimeController, Pinetime::Controllers::CalendarManager& calendarManager)
   : Screen(app), dateTimeController(dateTimeController), calendarManager(calendarManager) {
-  week_canvas = lv_canvas_create(lv_scr_act(), nullptr);
+  week_canvas = lv_obj_create(lv_scr_act(), nullptr);
   lv_canvas_set_buffer(week_canvas, &cbuf[0], CANVAS_WIDTH, CANVAS_HEIGHT, LV_IMG_CF_INDEXED_1BIT);
   lv_obj_set_pos(week_canvas, 20, CANVAS_Y_POSITION);
   lv_canvas_set_palette(week_canvas, 0, LV_COLOR_BLACK);
@@ -50,10 +50,6 @@ Timeline::Timeline(DisplayApp* app, Controllers::DateTime& dateTimeController, P
 
 Timeline::~Timeline() {
   lv_obj_clean(lv_scr_act());
-}
-
-bool Timeline::Refresh() {
-  return running;
 }
 
 bool Timeline::OnButtonPushed() {
