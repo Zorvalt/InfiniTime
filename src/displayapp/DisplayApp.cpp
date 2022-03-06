@@ -486,8 +486,8 @@ void DisplayApp::LoadApp(Apps app, DisplayApp::FullRefreshDirections direction) 
       currentScreen = std::make_unique<Screens::Steps>(this, motionController, settingsController);
       break;
     case Apps::Timeline:
-        currentScreen.reset(new Screens::Timeline(this, dateTimeController, calendarManager));
-        break;
+      currentScreen = std::make_unique<Screens::Timeline>(this, dateTimeController, calendarManager, lvgl);
+      break;
   }
   currentApp = app;
 }
