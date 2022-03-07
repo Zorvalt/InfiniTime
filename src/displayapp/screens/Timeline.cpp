@@ -205,7 +205,7 @@ void Timeline::displayWeek() {
       column_index += 7;
     }
 
-    draw_event(column_index, it_time->tm_hour*60 + it_time->tm_min, it.duration);
+    draw_event(column_index, it_time->tm_hour*60 + it_time->tm_min, it.duration/60);
   }
 }
 
